@@ -37,8 +37,10 @@ hard reload fixes it.
 |---|---|---|
 | 16.1.7 | ❌ stale | ❌ stale |
 | **16.2.12** | ✅ fresh every time | ❌ stale every time |
-| 16.3.5 (latest stable at time of writing) | ❌ stale | ❌ stale |
-| 16.4.0-canary.37 (latest canary at time of writing) | ❌ stale | ❌ stale |
+| 16.3.5 | ❌ stale | ❌ stale |
+| 16.3.6 (latest stable, re-tested 2026-09-22) | ❌ stale | ❌ stale |
+| 16.4.0-canary.37 | ❌ stale | ❌ stale |
+| 16.4.0-canary.38 (latest canary, re-tested 2026-09-22) | ❌ stale | ❌ stale |
 
 16.2.12 is the only tested version where refresh works at all on this page, and
 there the **query string alone** is the trigger: same page, same build, refresh
