@@ -67,3 +67,25 @@ works on `/` and never works on `/?status=draft`.
   (`?status=draft`, `?q=…`): mutate → `router.refresh()` → UI keeps showing the
   pre-mutation rows until a hard reload. Plain-path pages in the same app are
   reliable.
+
+## Next: serving-path matrix (planned)
+
+A second production report on
+[vercel/next.js#99028](https://github.com/vercel/next.js/issues/99028)
+(2026-09-24) shows the same commit passing 12/12 when deployed to Vercel but
+failing deterministically under self-hosted `next start`. That split points at
+the self-hosted serving path, so the next matrix for this repo adds a
+serving-path dimension:
+
+| Cell | Serving setup |
+|---|---|
+| A | bare `next start` (current matrix) |
+| B | `next start` behind nginx, `proxy_buffering on` |
+| C | `next start` behind nginx, `proxy_buffering off` |
+
+The second report also documents a related variant where the refresh `_rsc`
+request **does** fire and returns a fresh payload, but the current page never
+commits it (a soft navigation away and back then shows the new data). Both
+variants end the same way — the router holds a fresh tree the current page
+never renders — which suggests the commit step, not the fetch, is where the
+two reports converge.
